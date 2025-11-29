@@ -3,6 +3,12 @@
   "description": "Shared core layer for BeFuture applications.",
   "type": "library",
   "license": "MIT",
+  "authors": [
+    {
+      "name": "Muratcan Kayalak (BeFuture Interactive)",
+      "homepage": "https://befuture.in"
+    }
+  ],
   "require": {
     "php": "^8.2",
     "illuminate/support": "^11.0"
