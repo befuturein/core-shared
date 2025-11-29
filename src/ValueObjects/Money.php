@@ -8,22 +8,21 @@ use InvalidArgumentException;
 
 final class Money extends ValueObject
 {
-    /**
-     * Amount is stored in minor units (e.g. cents).
-     */
-    public function __construct(
-        private readonly int $amount,
-        private readonly string $currency
-    ) {
-        if ($this->amount < 0) {
+    private int $amount;
+    private string $currency;
+
+    public function __construct(int $amount, string $currency)
+    {
+        if ($amount < 0) {
             throw new InvalidArgumentException('Amount cannot be negative.');
         }
 
-        if ($this->currency === '' || strlen($this->currency) !== 3) {
+        if ($currency === '' || strlen($currency) !== 3) {
             throw new InvalidArgumentException('Currency must be a 3-letter ISO code.');
         }
 
-        $this->currency = mb_strtoupper($this->currency);
+        $this->amount   = $amount;
+        $this->currency = mb_strtoupper($currency);
     }
 
     public static function fromFloat(float $amount, string $currency, int $precision = 2): self

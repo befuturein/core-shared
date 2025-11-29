@@ -1,6 +1,6 @@
 <?php
 
-namespace BeFuture\CoreShared\DTO;
+namespace BeFuture\CoreShared\DTOs;
 
 abstract class BaseDTO
 {

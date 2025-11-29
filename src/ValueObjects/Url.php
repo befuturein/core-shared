@@ -8,10 +8,11 @@ use InvalidArgumentException;
 
 final class Url extends ValueObject
 {
-    public function __construct(
-        private readonly string $value
-    ) {
-        $normalized = trim($this->value);
+    private string $value;
+
+    public function __construct(string $value)
+    {
+        $normalized = trim($value);
 
         if (! filter_var($normalized, FILTER_VALIDATE_URL)) {
             throw new InvalidArgumentException('Invalid URL: ' . $normalized);

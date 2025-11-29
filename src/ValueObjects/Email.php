@@ -8,10 +8,11 @@ use InvalidArgumentException;
 
 final class Email extends ValueObject
 {
-    public function __construct(
-        private readonly string $value
-    ) {
-        $normalized = trim($this->value);
+    private string $value;
+
+    public function __construct(string $value)
+    {
+        $normalized = trim($value);
 
         if (! filter_var($normalized, FILTER_VALIDATE_EMAIL)) {
             throw new InvalidArgumentException('Invalid email address: ' . $normalized);

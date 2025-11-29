@@ -8,13 +8,14 @@ use InvalidArgumentException;
 
 final class Phone extends ValueObject
 {
-    public function __construct(
-        private readonly string $value
-    ) {
-        $normalized = preg_replace('/\s+/', '', $this->value);
+    private string $value;
+
+    public function __construct(string $value)
+    {
+        $normalized = preg_replace('/\s+/', '', $value);
 
         if (! preg_match('/^\+?[0-9]{7,20}$/', $normalized)) {
-            throw new InvalidArgumentException('Invalid phone number: ' . $this->value);
+            throw new InvalidArgumentException('Invalid phone number: ' . $value);
         }
 
         $this->value = $normalized;
